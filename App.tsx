@@ -1,6 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { ClassExample } from './classes/ClassExample';
+import { Doggy, DoggyRow } from './classes/DoggyComponent';
+import Requestito from './classes/RequestClass';
+import RequestFunction from './classes/RequestFunction';
 
 // toda la UI en react está organizada en unidades a las que llama componentes
 // core componentes y componentes nativos - definidos por react native que se traducen a UI nativa
@@ -15,8 +18,21 @@ export default function App() {
   // pseudohtml (sintácticamente)
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <ClassExample></ClassExample>
+      {/* <Text>Open up App.tsx to start working on your app!</Text> */}
+      {/* <ClassExample nombre="EJEMPLITO"></ClassExample>*/}
+      {/* <Doggy nombre="FIDO" edad={2} />*/}
+      {/* <Requestito url='https://bitbucket.org/itesmguillermorivas/partial2/raw/45f22905941b70964102fce8caf882b51e988d23/carros.json' />*/}
+      {/* <RequestFunction url='https://bitbucket.org/itesmguillermorivas/partial2/raw/45f22905941b70964102fce8caf882b51e988d23/carros.json' />*/}
+      <FlatList 
+        data={[
+          {nombre: "Perrito1", uri: "https://www.warrenphotographic.co.uk/photography/sqrs/42790.jpg"},
+          {nombre: "Perrito2", uri: "https://www.warrenphotographic.co.uk/photography/sqrs/42790.jpg"},
+          {nombre: "Perrito3", uri: "https://www.warrenphotographic.co.uk/photography/sqrs/42790.jpg"}
+        ]}
+        renderItem={({item}) => {
+          return (<DoggyRow name={item.nombre} uri={item.uri} />);
+        }}
+      />
       <StatusBar style="auto" />
     </View>
   );
